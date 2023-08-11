@@ -1,3 +1,5 @@
+
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 const type = ["copa", "basto", "espada", "oro"];
 
@@ -76,7 +78,19 @@ const setEnvidoPoints = (value) => {
   return value;
 };
 
+
+/* 
+    verificar
+const checkEnvido = (num1 , num2) => {
+  if(num1 > 7 && num2 > 7){
+    return 20
+  }else {
+    return setEnvidoPoints(num1) + setEnvidoPoints(num2) + 20;
+  }
+} */
+
 const envidoValues = (hand, type, values) => {
+  /* simplificar  */
   switch (type) {
     case values.FIRST:
       if (hand[0].number > 7 && hand[1].number > 7) {
@@ -127,83 +141,32 @@ const envidoValues = (hand, type, values) => {
 
 */
 
-const cardValues = {
-  ORO1: "1 DE ORO",
-  COPA1: "1 DE BASTO",
-  DOS: "DOS",
-  TRES: "TRES",
-  ORO7: "7 DE ORO",
-  ESPADA7: "7 DE ESPADA",
-  BASTO1: "1 DE BASTO",
-  ESPADA1: "1 DE ESPADA",
-  NORMAL: "NORMAL",
-};
-
 const verifyTrucoPoints = ({ number, type }) => {
   if (number == 1 && type == "oro") {
-    return cardValues.ORO1;
+    return 13;  
   } else if (number == 1 && type == "copa") {
-    return cardValues.COPA1;
+    return 13;  
   } else if (number == 2) {
-    return cardValues.DOS;
+    return 14;  
   } else if (number == 3) {
-    return cardValues.TRES;
+    return 15;  
   } else if (number == 7 && type == "oro") {
-    return cardValues.ORO7;
+    return 16;  
   } else if (number == 7 && type == "espada") {
-    return cardValues.ESPADA7;
+    return 17;  
   } else if (number == 1 && type == "basto") {
-    return cardValues.BASTO1;
+    return 18;  
   } else if (number == 1 && type == "espada") {
-    return cardValues.ESPADA1;
+    return 19;  
   } else {
-    return cardValues.NORMAL;
+    return number;  
   }
 };
 
-const setTrucoValues = (card, value, cardValues) => {
-  switch (value) {
-    case cardValues.ORO1:
-      return 13;
-      break;
 
-    case cardValues.COPA1:
-      return 13;
-      break;
-
-    case cardValues.DOS:
-      return 14;
-      break;
-
-    case cardValues.TRES:
-      return 15;
-      break;
-
-    case cardValues.ORO7:
-      return 16;
-      break;
-
-    case cardValues.ESPADA7:
-      return 17;
-      break;
-
-    case cardValues.BASTO1:
-      return 18;
-      break;
-
-    case cardValues.ESPADA1:
-      return 19;
-      break;
-
-    case cardValues.NORMAL:
-      return card.number;
-      break;
-
-    default:
-      break;
-  }
-};
 /* ---------------------------------------------------------------------------------------------- */
+
+
 let deck = Deck(numbers, type);
 let randomDeck = Mezclar(deck);
 let hands = Hands(randomDeck);
@@ -217,7 +180,6 @@ verifyPoints(hands.playerOne);
 console.log(hands.playerOne);
 console.log("puntos", points);
 
+let trucoPoints = verifyTrucoPoints(hands.playerOne[0]);
 
-
-let cardPoint = setTrucoValues(hands.playerOne[0] ,verifyTrucoPoints(hands.playerOne[0]), cardValues)
-console.log('puntaje primera carta',cardPoint)
+console.log('puntos primera carta', trucoPoints)
